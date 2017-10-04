@@ -23,20 +23,21 @@ public:
 	string value(){ return _value; }
 	string symbol(){return _symbol;}
 	int class_number(){return 1;}
-	//bool match(Number num);
+	
 
 	template <class T>
-	bool match(T &atom)
+	bool match(T &input)
 	{
-		if (class_number()==0)
+		if (input.class_number()==0)
 			return false;
-		else if (class_number()==1)
-			return atom.value()==_value;
+		else if (input.class_number()==1)
+			return input.value()==_value;
 		else
-			return atom.match(*this);
+			return input.match(*this);
 	}
 	//bool match(Variable &var);
-
+	//bool match(Number num);
+	
 private:
 	
 	string _symbol;

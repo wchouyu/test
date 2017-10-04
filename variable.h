@@ -18,15 +18,15 @@ public:
   int class_number(){return 2;}
 
   template <class T>
-  bool match( T  &atom)
+  bool match( T  &input)
   {
 	bool ret = _assignable;
     if(_assignable){
-      _value = atom.value() ;
+      _value = input.value() ;
       _assignable = false;
     }
 	else {
-		if (_value==atom.symbol())
+		if (_value==input.symbol())
 			ret=true;
 	}
     return ret;

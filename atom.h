@@ -13,24 +13,22 @@ public:
   Atom (string s):_symbol(s),_value(s) {}
 
   //Atom (const Atom &a):_symbol(a._symbol){}
-  /*bool operator ==(Atom a) {return match(a);}
-  bool operator =(Variable &var){return match(var);}
-  bool operator =(Number num){return match(num);}*/
+  /*bool operator ==(Atom a) {return match(&a);}
+  bool operator =(Variable &var){return match(&var);}
+  bool operator =(Number num){return match(&num);}*/
 	string value(){ return _value; }
 	string symbol(){return _symbol;}
 	int class_number(){return 0;}
 
   template <class T>
-  bool match(T &atom)
+  bool match(T &input)
   {
-	  if (class_number()==0)
-		  return atom.value() == _value;
-	  else if (class_number()==1)
+	  if (input.class_number()==0)
+		  return input.value() == _value;
+	  else if (input.class_number()==1)
 		  return false;
 	  else
-	  {
-		  return atom.match(*this);
-	  }
+		  return input.match(*this);
   }
   
   
