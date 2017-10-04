@@ -2,24 +2,42 @@
 #define VARIABLE_H
 
 #include <string>
-#include "atom.h"
-#include "Number.h"
+//#include "atom.h"
+//#include "number.h"
 using std::string;
+
+//class Number;
+//class Atom;
 
 class Variable{
 public:
   Variable(string s):_symbol(s){}
-  string const _symbol;
+  
   string value(){ return _value; }
+  string symbol(){return _symbol;}
+  int class_number(){return 2;}
 
-  bool match( Atom atom );
-
-  bool match(Number number);
-  bool match(Variable variable);
+  template <class T>
+  bool match( T  &atom)
+  {
+	bool ret = _assignable;
+    if(_assignable){
+      _value = atom.value() ;
+      _assignable = false;
+    }
+	else {
+		if (_value==atom.symbol())
+			ret=true;
+	}
+    return ret;
+  }
+  //bool match(Number number);
+  //bool match(Variable variable);
   
 private:
-  string _value;
-  bool _assignable = true;
+	string _symbol;
+	string _value;
+	bool _assignable = true;
 };
 
 #endif
